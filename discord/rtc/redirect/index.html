@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="refresh" content="0; url=https://discord.gg/rotc" />
     <title>Redirecting to Discord</title>
+    <link id="favicon" rel="icon" type="image/png" />
+    <script>
+      fetch("/favicon.json")
+        .then((response) => {
+          if (!response.ok) throw new Error("Could not load favicon.json");
+          return response.json();
+        })
+        .then((data) => {
+          if (data.href) document.getElementById("favicon").href = data.href;
+          if (data.title) document.title = data.title;
+        })
+        .catch((error) => console.error("Could not update favicon:", error));
+    </script>
   </head>
   <body>
     <p>Redirecting to Discord… <a href="https://discord.gg/rotc">Click here if you aren't redirected.</a></p>

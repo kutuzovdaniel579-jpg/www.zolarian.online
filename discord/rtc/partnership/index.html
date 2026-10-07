@@ -5,8 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f6f7fb" />
     <title>Citadel Policy</title>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/www.zolarian.online/refs/heads/main/discord/rtc/icon.png" />
+    <link id="favicon" rel="icon" type="image/png" />
     <link rel="stylesheet" href="styles.css" />
+    <script>
+      fetch("/favicon.json")
+        .then((response) => {
+          if (!response.ok) throw new Error("Could not load favicon.json");
+          return response.json();
+        })
+        .then((data) => {
+          if (data.href) document.getElementById("favicon").href = data.href;
+          if (data.title) document.title = data.title;
+        })
+        .catch((error) => console.error("Could not update favicon:", error));
+    </script>
   </head>
   <body>
     <header class="topbar">

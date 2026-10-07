@@ -6,7 +6,19 @@
   <title>Political Parties | ISZ</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="icon" href="https://cdn.discordapp.com/icons/1520834495488725123/a_9dea66992e5a734691d56c7d2cc1da34.webp?size=64" type="image/webp" />
+  <link id="favicon" rel="icon" type="image/png" />
+  <script>
+    fetch("/favicon.json")
+      .then((response) => {
+        if (!response.ok) throw new Error("Could not load favicon.json");
+        return response.json();
+      })
+      .then((data) => {
+        if (data.href) document.getElementById("favicon").href = data.href;
+        if (data.title) document.title = data.title;
+      })
+      .catch((error) => console.error("Could not update favicon:", error));
+  </script>
 </head>
 <body>
   <main class="page-shell">

@@ -3,6 +3,19 @@
   <head>
     <title>The BCF</title>
     <link rel="stylesheet" href="styles.css" />
+    <link id="favicon" rel="icon" type="image/png" />
+    <script>
+      fetch("/favicon.json")
+        .then((response) => {
+          if (!response.ok) throw new Error("Could not load favicon.json");
+          return response.json();
+        })
+        .then((data) => {
+          if (data.href) document.getElementById("favicon").href = data.href;
+          if (data.title) document.title = data.title;
+        })
+        .catch((error) => console.error("Could not update favicon:", error));
+    </script>
   </head>
   <body style=background(url'https://i.postimg.cc/d3RjjtH1/website-BG.png')>
 
